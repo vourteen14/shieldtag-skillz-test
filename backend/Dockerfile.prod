@@ -7,8 +7,6 @@ RUN npm install
 
 COPY . .
 
-RUN chmod +x ./entrypoint-prod.sh
-
 RUN npm run build
 RUN npm prune --production
 
