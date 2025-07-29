@@ -24,6 +24,34 @@ services:
     restart: unless-stopped
     command: npm run dev
 
+  migrate:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: shieldtag-migrate-dev
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - JWT_SECRET=794eaf3343916929928148b7b9944fee
+      - JWT_REFRESH_SECRET=794eaf3343916929928148b7b9944fee
+      - DB_HOST=postgres
+      - DB_PORT=5432
+      - DB_NAME=backend
+      - DB_USER=postgres
+      - DB_PASSWORD=81be1f61f552709
+      - FRONTEND_URL=http://frontend:3001
+      - REDIS_URL=redis://redis:6379
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    depends_on:
+      postgres:
+        condition: service_healthy
+    networks:
+      - shieldtag-network
+    restart: "no"
+    command: npm run db:migrate
+
   backend:
     build:
       context: ./backend
@@ -69,7 +97,7 @@ services:
       - shieldtag-network
     restart: unless-stopped
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${DB_USER:-postgres} -d ${DB_NAME:-shieldtag_db}"]
+      test: ["CMD-SHELL", "pg_isready -U postgres -d backend"]
       interval: 30s
       timeout: 10s
       retries: 5
@@ -78,8 +106,6 @@ services:
   redis:
     image: redis:7-alpine
     container_name: shieldtag-redis-dev
-    ports:
-      - "6379:6379"
     volumes:
       - redis_data:/data
     networks:
