@@ -7,10 +7,8 @@ RUN npm install
 
 COPY . .
 
-RUN chmod +x ./entrypoint.sh
-
 EXPOSE 3000
 
 ENV NODE_ENV=development
 
-ENTRYPOINT ["./entrypoint.sh"]
+ENTRYPOINT ["npm", "run", "dev"]
