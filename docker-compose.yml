@@ -39,7 +39,7 @@ services:
       - DB_NAME=backend
       - DB_USER=postgres
       - DB_PASSWORD=81be1f61f552709
-      - FRONTEND_URL=${FRONEND_URL}
+      - FRONTEND_URL=${FRONTEND_URL}
       - REDIS_URL=redis://redis:6379
     volumes:
       - ./backend:/app
@@ -69,7 +69,7 @@ services:
       - DB_NAME=backend
       - DB_USER=postgres
       - DB_PASSWORD=81be1f61f552709
-      - FRONTEND_URL=${FRONEND_URL}
+      - FRONTEND_URL=${FRONTEND_URL}
       - REDIS_URL=redis://redis:6379
     volumes:
       - ./backend:/app
