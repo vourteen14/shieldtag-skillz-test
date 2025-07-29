@@ -1,0 +1,44 @@
+# Node modules
+node_modules/
+
+# Env file
+.env
+
+# Log files
+*.log
+logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# OS system files
+.DS_Store
+Thumbs.db
+
+# Runtime files
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage & testing
+coverage/
+.nyc_output/
+
+# Optional npm cache directory
+.npm/
+
+# VS Code settings (opsional, kalau lo pakai VS Code)
+.vscode/
+
+# Dist / build files
+dist/
+build/
+
+# TypeScript (kalau ada)
+*.tsbuildinfo
+
+# Others (optional, tergantung tooling yang lo pakai)
+.env.test
+.env.production
