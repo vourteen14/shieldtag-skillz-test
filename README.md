@@ -32,7 +32,7 @@ git clone <your-repo-url>
 cd secure-auth-system
 
 # Run with Docker Compose
-NEXT_PUBLIC_API_URL=http://<server external ip>:3000/api docker-compose build --no-cache
+NEXT_PUBLIC_API_URL=http://<server external ip>:3000/api FRONTEND_URL=http://<server external ip>:3001 docker-compose build --no-cache
 docker-compose up -d
 
 # Access application
